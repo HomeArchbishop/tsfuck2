@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "UMD",
+    "lib": ["es2017"],
+    "moduleResolution": "node",
+    "strictNullChecks": true
+  },
+  "include": ["src/**/*", "tests/**/*", "pro/**/*"]
+}
