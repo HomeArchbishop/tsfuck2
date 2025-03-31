@@ -14,6 +14,8 @@ type ProgramTokenLOOPEND = ']'
 type ProgramTokenOUTPUT = '.'
 type ProgramTokenINPUT = ','
 
+type ProgramTokenWHITESPACE = ' ' | '\n' | '\r' | '\t'
+
 export type IsBracketsBalanced<
   P extends string,
   S extends any[] = []
@@ -69,7 +71,9 @@ type Excute<
                         ? { _: Excute<RestP, I, TM, ArrayRest<PStack>, Out> }
                         // Else, use the top of the stack to backwards the loop
                         : { _: Excute<PStack[0], I, TM, PStack, Out> }
-                      : TsfuckError<'Invalid program token'>
+                      : ThisP extends ProgramTokenWHITESPACE /* Ignore whitespace */
+                        ? { _: Excute<RestP, I, TM, PStack, Out, LoopSkip> }
+                        : TsfuckError<'Invalid program token'>
       // If LoopSkip is not empty, then skip to the matching LOOPEND
       : ThisP extends ProgramTokenLOOPSTART
         ? { _: Excute<RestP, I, TM, PStack, Out, `_${LoopSkip}`> }
