@@ -1,5 +1,3 @@
-/* eslint-disable no-multiple-empty-lines */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { IsExtends, Test } from '../src/test'
 import type {
   IsBracketsBalanced, Tsfuck,
